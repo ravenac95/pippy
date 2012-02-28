@@ -1,0 +1,5 @@
+{
+    "package_name": "pippy",
+    "env_types": ["pip"],
+    "pip_requirements_file": "requirements.txt"
+}
