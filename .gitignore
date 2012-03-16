@@ -46,9 +46,9 @@ eggs
 parts
 dist
 
-#virtstrap (old version)
-quickactivate.sh
-vs.env
+#virtstrap
+quickactivate
+.vs.env
 
 # Misc
 *.bak

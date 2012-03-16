@@ -1,0 +1,10 @@
+requirements:
+  - pip
+
+---
+profile: development
+ 
+requirements:
+  - nose
+  - fudge
+  - virtualenv

@@ -1,0 +1,4 @@
+pip (pip==1.1)
+nose (nose==1.1.2)
+fudge (fudge==1.0.3)
+virtualenv (virtualenv==1.7.1.2)
