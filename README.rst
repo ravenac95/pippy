@@ -12,12 +12,12 @@ The folder structure that I'm currently thinking of using is this::
         packages/
             source/ # <- stores the sources for packages
                 package-name/
-                    .. tons of zips ..
+                    .. tons of zips/tars ..
                 package-name/
                 package-name/
             2.5/    # <- stores builds for python 2.5
                 package-name/
-                    .. tons of zips ..
+                    .. tons of tars ..
             2.6/    # <- for python 2.6
             ... more python versions ...
-            
+
