@@ -1,2 +1,6 @@
-flask
-sqlalchemy
+flask==0.8
+werkzeug==0.8.3
+sqlalchemy==0.7.6
+lxml==2.3.3
+ipython==0.12
+mysql-python==1.2.3

@@ -15,9 +15,11 @@ The folder structure that I'm currently thinking of using is this::
                     .. tons of zips/tars ..
                 package-name/
                 package-name/
-            2.5/    # <- stores builds for python 2.5
-                package-name/
-                    .. tons of tars ..
-            2.6/    # <- for python 2.6
-            ... more python versions ...
-
+            cpython/ # <- stores builds for cpython
+                2.5/    # <- stores builds for python 2.5
+                    package-name/
+                        .. tons of tars ..
+                2.6/    # <- for python 2.6
+                ... more python versions ...
+            pypy/ # <- stores builds for pypy
+            ... more implementations ...
