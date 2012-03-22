@@ -23,3 +23,24 @@ The folder structure that I'm currently thinking of using is this::
                 ... more python versions ...
             pypy/ # <- stores builds for pypy
             ... more implementations ...
+
+The CLI currently provides a single command, the ``install`` command::
+    
+    pippy install [requirementsfile]
+
+This command accepts a pip requirements file. It is highly suggested that the
+requirements file use only exact specifications for the requirements
+
+Future Commands
+---------------
+
+- ``manage`` - Will manage all the packages in pippy's cache.
+- ``uninstall`` - A convenience operation to pip's uninstall command
+
+Configuration
+-------------
+
+By default pippy will use ``~/.pippy`` as the directory for it's cache.
+However, you can set this value by changing the ``PIPPY_CACHE`` environment
+variable to point to the correct directory. You must have write permissions to
+that directory or else pippy will not work.
