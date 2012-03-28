@@ -7,7 +7,6 @@ from pip.baseparser import parser as pip_parser
 from finder import *
 from req import PippyRequirementSet
 
-
 # Monkey patch the RequirementSet
 install.RequirementSet = PippyRequirementSet
 

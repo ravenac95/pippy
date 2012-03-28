@@ -3,8 +3,8 @@ from pip.download import url_to_path
 from pip.index import PackageFinder, Link
 from pip.log import logger
 from utils import get_implementation, get_python_version_str
+from config import pippy_home
 
-CACHE_PATH = './pycache'
 SOURCE_PATH = 'src'
 EXTENSION = '.tar.gz'
 
@@ -43,14 +43,17 @@ class ExactPackageFinder(PackageFinder):
     def _find_locally(self, name, version):
         # FIXME not implemented
         name = name.lower()
-        local_path = build_cache(CACHE_PATH, name, version)
+        local_path = build_cache(self.cache_path(), name, version)
         if not local_path:
-            local_path = source_cache(CACHE_PATH, name, version)
+            local_path = source_cache(self.cache_path(), name, version)
         else:
             logger.notify('Found locally at %s', local_path)
         if local_path:
             return Link("file:/%s" % local_path)
         return None
+
+    def cache_path(self):
+        return pippy_home()
 
 def make_filename(name, version):
     filename = '%s-%s%s' % (name, version, EXTENSION)

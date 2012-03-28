@@ -31,20 +31,18 @@ from pip import req
 from pip.req import *
 from utils import *
 from finder import *
+from config import pippy_home
 
 
 PIP_DELETE_MARKER_FILENAME = 'pip-delete-this-directory.txt'
-PIPPY_CACHE = './pycache'
 
 def run_build(req, req_version, link, location):
-    build_cache_path = build_path(PIPPY_CACHE, req.name, req_version)
+    build_cache_path = build_path(pippy_home(), req.name, req_version)
     if not os.path.exists(build_cache_path):
-        print "RUNNING BUILD FOR CACHE"
         try:
             os.makedirs(os.path.dirname(build_cache_path))
         except OSError:
             pass
-        print location
         try:
             call_subprocess(
                 [sys.executable, 'setup.py', 'build'],
@@ -59,9 +57,7 @@ def run_build(req, req_version, link, location):
 def cache_download(req, req_version, link, location):
     # Does the current requirement exist in the 
     # Build the directory
-    print "CACHING!!!!!"
-    print "%s version (%s)" % (req.name, req_version)
-    source_cache_path = source_path(PIPPY_CACHE, req.name, req_version)
+    source_cache_path = source_path(pippy_home(), req.name, req_version)
     if not os.path.exists(source_cache_path):
         # if the path does not exist. tar gzip the folder and cache it
         try:
@@ -75,7 +71,6 @@ def cache_download(req, req_version, link, location):
 def wrap_unpack(f):
     @wraps(f)
     def unpack_wrapper(req, req_version, link, location, *args, **kwargs):
-        print "Link: %s - Location: %s" % (link, location)
         # Download the file
         wrapped_return = f(link, location, *args, **kwargs)
         # Save the download
