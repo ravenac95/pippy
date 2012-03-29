@@ -33,7 +33,6 @@ from utils import *
 from finder import *
 from config import pippy_home
 
-
 PIP_DELETE_MARKER_FILENAME = 'pip-delete-this-directory.txt'
 
 def run_build(req, req_version, link, location):
