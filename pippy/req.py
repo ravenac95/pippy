@@ -43,6 +43,7 @@ def run_build(req, req_version, link, location):
             os.makedirs(os.path.dirname(build_cache_path))
         except OSError:
             pass
+        logger.notify('Attempting to cache build of package "%s"' % req.name)
         try:
             call_subprocess(
                 [sys.executable, 'setup.py', 'build'],
@@ -51,7 +52,9 @@ def run_build(req, req_version, link, location):
                 command_desc='python setup.py build')
         except:
             # for now just reraise
+            logger.notify('Build of package "%s" failed' % req.name)
             raise
+        logger.notify('Build succeeded for "%s"' % req.name)
         tar_gzip_dir(location, build_cache_path, base=req.name)
 
 def cache_download(req, req_version, link, location):
@@ -65,6 +68,7 @@ def cache_download(req, req_version, link, location):
         except OSError:
             # Do nothing the directory is already made
             pass
+        logger.notify('Caching "%s" locally' % req.name)
         tar_gzip_dir(location, source_cache_path, base=req.name)
     run_build(req, req_version, link, location)
 
@@ -88,6 +92,7 @@ class PippyRequirementSet(req.RequirementSet):
     def __init__(self, *args, **kwargs):
         super(PippyRequirementSet, self).__init__(*args, **kwargs)
 
+    # Almost entirely copied from original pip source
     def prepare_files(self, finder, force_root_egg_info=False, bundle=False):
         """Prepare process. Create temp directories, download and/or unpack files."""
         unnamed = list(self.unnamed_requirements)
