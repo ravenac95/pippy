@@ -49,7 +49,16 @@ Eventually, pippy will provide almost the same commands as pip, plus some
 additional commands for managing the installed packages.
 
 Future Commands
----------------
-
+^^^^^^^^^^^^^^^
+- ``install`` - Will work the same as ``pip install``
 - ``manage`` - Will manage all the packages in pippy's cache.
 - ``uninstall`` - A convenience operation to pip's uninstall command
+
+Known Issues
+------------
+
+These issues will be rectified as soon as possible
+
+- Doesn't adequately support custom package indexes. It'll work, but it's use
+  is highly discouraged at this time.
+- Isn't known to work with Windows
