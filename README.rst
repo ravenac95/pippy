@@ -4,9 +4,20 @@ pippy
 pippy is a pip extension that will allow you to keep local copies of prebuilt
 python packages. It's main purpose is to be used with virtstrap so that
 virtstrap can create copies of each project without ever having to download or
-build anything.
+build anything. It accomplishes this only when it knows the exact version of
+the package you wish to download. Otherwise it behaves just as pip would
+behave.
 
-The folder structure that I'm currently thinking of using is this::
+Since virtstrap generates a VEfile.lock (similar to Ruby Bundler's
+Gemfile.lock). Virtstrap tracks the exact version of the software you're using.
+For this very reason, pippy is planned to be included in virtstrap.
+
+Local Package Storage
+---------------------
+
+By default pippy stores all of the packages in ``~/.pippy``. To change this
+directory just change the environment variable ``PIPPY_CACHE`` to point to the
+desired directory. The folder structure for the storage is this::
 
     ~/.pippy
         packages/
@@ -24,23 +35,21 @@ The folder structure that I'm currently thinking of using is this::
             pypy/ # <- stores builds for pypy
             ... more implementations ...
 
-The CLI currently provides a single command, the ``install`` command::
+The CLI currently only accepts one argument, a pip requirements file::
     
-    pippy install [requirementsfile]
+    pippy [requirementsfile]
 
-This command accepts a pip requirements file. It is highly suggested that the
-requirements file use only exact specifications for the requirements
+It is highly suggested that the requirements file use only exact specifications
+for the requirements.
+
+Further Development
+-------------------
+
+Eventually, pippy will provide almost the same commands as pip, plus some
+additional commands for managing the installed packages.
 
 Future Commands
 ---------------
 
 - ``manage`` - Will manage all the packages in pippy's cache.
 - ``uninstall`` - A convenience operation to pip's uninstall command
-
-Configuration
--------------
-
-By default pippy will use ``~/.pippy`` as the directory for it's cache.
-However, you can set this value by changing the ``PIPPY_CACHE`` environment
-variable to point to the correct directory. You must have write permissions to
-that directory or else pippy will not work.
