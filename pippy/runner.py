@@ -1,5 +1,5 @@
 import sys
-import argparse
+from . import argparse
 from pip import version_control
 from pip import req
 from pip.commands import install
