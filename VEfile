@@ -1,6 +1,9 @@
 requirements:
   - pip
 
+environment:
+  PIPPY_HOME: $VE_DIR/.pippy
+
 ---
 profile: development
  
