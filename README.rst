@@ -21,19 +21,20 @@ desired directory. The folder structure for the storage is this::
 
     ~/.pippy
         packages/
-            source/ # <- stores the sources for packages
-                package-name/
-                    .. tons of zips/tars ..
-                package-name/
-                package-name/
-            cpython/ # <- stores builds for cpython
-                2.5/    # <- stores builds for python 2.5
+            some.pypi.index.domain/ <- to deal with package indexes
+                source/ # <- stores the sources for packages
                     package-name/
-                        .. tons of tars ..
-                2.6/    # <- for python 2.6
-                ... more python versions ...
-            pypy/ # <- stores builds for pypy
-            ... more implementations ...
+                        .. tons of zips/tars ..
+                    package-name/
+                    package-name/
+                cpython/ # <- stores builds for cpython
+                    2.5/    # <- stores builds for python 2.5
+                        package-name/
+                            .. tons of tars ..
+                    2.6/    # <- for python 2.6
+                    ... more python versions ...
+                pypy/ # <- stores builds for pypy
+                ... more implementations ...
 
 The CLI currently only accepts one argument, a pip requirements file::
     
