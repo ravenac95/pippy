@@ -1,0 +1,15 @@
+[trusted-indexes]
+# This is the default trusted index. You can only add to it. 
+# The trusted sources will always be trusted
+pypi.python.org = 
+    pypi.python.org
+    a.pypi.python.org
+    b.pypi.python.org
+    c.pypi.python.org
+    d.pypi.python.org
+    e.pypi.python.org
+    f.pypi.python.org
+    g.pypi.python.org
+
+    # Other trusted mirrors
+    packages.crate-cdn.com

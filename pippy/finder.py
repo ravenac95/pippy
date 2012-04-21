@@ -1,12 +1,24 @@
 import os
+from urlparse import urlparse
 from pip.download import url_to_path
-from pip.index import PackageFinder, Link
+from pip.index import PackageFinder, Link, get_mirrors
 from pip.log import logger
 from utils import get_implementation, get_python_version_str
 from config import pippy_home
 
 SOURCE_PATH = 'src'
 EXTENSION = '.tar.gz'
+
+DEFAULT_PYPI_DOMAIN = 'pypi.python.org'
+
+def known_index_url_dir(url):
+    parsed_url = urlparse(url)
+    domain = parsed_url.netloc
+    mirrors = get_mirrors()
+    if domain in mirrors:
+        return DEFAULT_PYPI_DOMAIN
+    #domain.replace(':', '_')
+    return domain
 
 class ExactPackageFinder(PackageFinder):
     def find_requirement(self, req, upgrade):

@@ -44,3 +44,24 @@ def test_build_path():
     path = build_path('/base', 'test', '0.1', py_implementation="pypy", 
             py_version="py27")
     assert path == '/base/pypy/py27/test/test-0.1.tar.gz'
+
+def test_known_index_url_dir_works():
+    tests = [
+        # We just need the domain all else SHOULDN'T matter
+        ('http://pypi.python.org/simple/', 'pypi.python.org'),
+        ('http://pypi.python.org/asdfafefjasdfkjalsdfk/', 'pypi.python.org'),
+        # Mirrors should resolve to the same directory
+        ('http://a.pypi.python.org/', 'pypi.python.org'),
+        ('http://b.pypi.python.org/', 'pypi.python.org'),
+        ('http://c.pypi.python.org/', 'pypi.python.org'),
+        ('http://d.pypi.python.org/', 'pypi.python.org'),
+        ('http://e.pypi.python.org/', 'pypi.python.org'),
+        ('http://f.pypi.python.org/', 'pypi.python.org'),
+        ('http://g.pypi.python.org/', 'pypi.python.org'),
+    ]
+    for test_link, expected in tests:
+        yield run_known_index_url_dir, test_link, expected
+
+def run_known_index_url_dir(test_link, expected):
+    index_dir = known_index_url_dir(test_link)
+    assert index_dir == expected
